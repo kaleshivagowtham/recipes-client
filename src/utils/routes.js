@@ -1,8 +1,8 @@
 
 export const routes = {
 
-    baseUrl : 'http://localhost:5000',
-    // baseUrl : 'http://apidomainname',
+    // baseUrl : 'http://localhost:5000',
+    baseUrl : 'https://recipe-server.netlify.app',
     api : {
 
         login : '/login',
