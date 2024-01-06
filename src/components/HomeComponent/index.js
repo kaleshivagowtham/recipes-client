@@ -1,5 +1,6 @@
 import { useEffect, useState , useMemo} from "react";
 import styles from './styles.module.css';
+import Head from "next/head";
 import Link from "next/link";
 import { routes } from "@/utils/routes";
 import axios from "axios";
@@ -59,6 +60,15 @@ export default function HomeComponent () {
 
     return (
         <div className={`${styles.wholeCont}`}>
+            <Head>
+                <title>foodGods</title>
+                <link rel="profile image" href="/favicon.ico" />
+                <meta charset="UTF-8" />
+                <meta name="description" content="Web developer portfolio website"/>
+                <meta name="keywords" content="food, recipe, foodgods, cusine, indian, italian, chineses, food, recipes"/>
+                <meta name="author" content="Shiva Gowtham Kale"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </Head>
             <div className={`${styles.topCont}`}>
                 <p className={styles.topContText}>{name}</p>
                 <img className={`${styles.topContImg} ${impImg === 'maleImg' ? styles.imgImp : ''}`} alt='cook image' 

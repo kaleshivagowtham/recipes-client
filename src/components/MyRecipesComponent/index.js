@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import styles from './styles.module.css';
 import { setSelected } from '../../features/modal/navbarSideSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -77,6 +78,15 @@ export default function MyRecipesComponent({writerId}) {
 
     return (
         <div className={styles.wholeCont}>
+            <Head>
+                <title>Write recipe</title>
+                <link rel="profile image" href="/favicon.ico" />
+                <meta charset="UTF-8" />
+                <meta name="description" content="Web developer portfolio website"/>
+                <meta name="keywords" content="food, recipe, foodgods, cusine, indian, italian, chineses, food, recipes"/>
+                <meta name="author" content="Shiva Gowtham Kale"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </Head>
             <div className={styles.topCont}>
             </div>
             <div className={styles.bottomCont}>

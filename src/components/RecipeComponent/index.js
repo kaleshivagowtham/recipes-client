@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from './styles.module.css';
+import Head from "next/head";
 import axios from "axios";
 import Link from 'next/link';
 import {useSelector, useDispatch} from 'react-redux';
@@ -124,6 +125,15 @@ export default function RecipeComponent({recipeId}) {
 
     return (
         <div className={styles.wholeCont}>
+            <Head>
+                <title>Recipe</title>
+                <link rel="profile image" href="/favicon.ico" />
+                <meta charset="UTF-8" />
+                <meta name="description" content="Web developer portfolio website"/>
+                <meta name="keywords" content="food, recipe, foodgods, cusine, indian, italian, chineses, food, recipes"/>
+                <meta name="author" content="Shiva Gowtham Kale"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </Head>
             <div className={styles.toolBox}>
                 <div className={styles.likeCont} onClick={likeHandler}>
                     <img src={ likedByMe ? '/likedIcon.png' : '/likeIcon.png'} 

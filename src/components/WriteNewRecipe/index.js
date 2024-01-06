@@ -1,5 +1,6 @@
 import { useState,useEffect, useRef, useMemo } from 'react';
 import styles from './styles.module.css';
+import Head from 'next/head';
 import {useDispatch , useSelector} from 'react-redux';
 import { openLoginModal } from '../../features/modal/loginModalSlice';
 import { redirect } from 'next/dist/server/api-utils';
@@ -181,6 +182,15 @@ export default function WriteNewRecipe() {
 
     return(
         <div className={styles.wholeCont} onClick={e => setCurrFocus(null)}>
+            <Head>
+                <title>Write recipe</title>
+                <link rel="profile image" href="/favicon.ico" />
+                <meta charset="UTF-8" />
+                <meta name="description" content="Web developer portfolio website"/>
+                <meta name="keywords" content="food, recipe, foodgods, cusine, indian, italian, chineses, food, recipes"/>
+                <meta name="author" content="Shiva Gowtham Kale"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </Head>
             {/* <div className={styles.leftCont}>
             </div> */}
             {/* {posted && <NotificationComponent message='The story has been saved' />} */}
