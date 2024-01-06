@@ -58,7 +58,7 @@
     height: auto;
     margin: 0;
     font-size: 0.9rem;
-    color: #ffffff;
+    color: var(--primary-font-color);
     font-weight: 600;
 }
 

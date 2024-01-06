@@ -64,10 +64,10 @@ export default function SearchComponent(props) {
                         {searchResult?.map((item) => {
                             return(
                                 <Link key={item} className={styles.eachSearchResultBox}
-                                    href={`recipe/${item._id}`}
+                                    href={`/recipe/${item._id}`} onClick={e => {e.stopPropagation(),dispatch(closeSearchModal())}}
                                     >
                                     {/* <img src='/trendingIcon.png' className={styles.trendingIconImg}/> */}
-                                    <p className={styles.eachSearchResult}>{item.title}</p>
+                                    <p className={styles.eachSearchResult} >{item.title}</p>
                                 </Link>
                             )
                         })}

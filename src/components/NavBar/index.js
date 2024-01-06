@@ -11,7 +11,7 @@ export default function NavBar ({scrollUp, totalHeight}) {
     const dispatch = useDispatch();
 
     const {} = useSelector(store => store.loginModal);
-    const {isLoggedIn, userEmail} = useSelector(store => store.loggedIn);
+    const {isLoggedIn, userEmail, userName} = useSelector(store => store.loggedIn);
 
     const logoutHandler = () => {
         dispatch(logoutAction());
@@ -32,7 +32,7 @@ export default function NavBar ({scrollUp, totalHeight}) {
                 ?
                     <div className = {styles.loginImgCont}>
                         <img src='/loginIcon.png' className = {styles.loginImg} alt='login image'/>
-                        <p className={styles.emailText}>{userEmail}</p>
+                        <p className={styles.emailText}>{userName}</p>
                         <div className = {styles.logoutCont} onClick={logoutHandler} >
                             <p className={styles.logoutText} >Logout</p>
                         </div>

@@ -120,7 +120,7 @@
 
 .eachSearchResultBox {
     width: 100%;
-    min-height: 5vh;
+    height: 8vh;
     margin: 0;
     border-radius: 12px;
     cursor: pointer;
