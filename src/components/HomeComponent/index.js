@@ -13,12 +13,7 @@ export default function HomeComponent () {
                     {image : '/category1.jpg',name : 'Healthy'},{image : '/category1.jpg',name : 'Meal Prep'},{image : '/category1.jpg',name : 'Soups'},
                     {image : '/category1.jpg',name : 'Salads'}];
 
-    const [latestList, setLatestList] = useState([{image : '/category1.jpg', createdOn:'December 14 2023', title:'Super Creamy White Chicken Chili with Seasoned Tots', paras : 'This White Chicken Chili is THE BOMB. Chicken, white beans, and green chiles folded up in a creamy soup blanket and topped with golden, crispity seasoned tots, cilantro, green onion, and hot sauce. WOW. Top combo', tags : ['pepper','potato', 'tomato','spicy']},
-                                                {image : '/category1.jpg', createdOn:'December 14 2023', title:'Super Creamy White Chicken Chili with Seasoned Tots', paras : 'This White Chicken Chili is THE BOMB. Chicken, white beans, and green chiles folded up in a creamy soup blanket and topped with golden, crispity seasoned tots, cilantro, green onion, and hot sauce. WOW. Top combo', tags : ['pepper','potato', 'tomato','spicy']},
-                                                {image : '', createdOn:'December 14 2023', title:'Super Creamy White Chicken Chili with Seasoned Tots', paras : 'This White Chicken Chili is THE BOMB. Chicken, white beans, and green chiles folded up in a creamy soup blanket and topped with golden, crispity seasoned tots, cilantro, green onion, and hot sauce. WOW. Top combo', tags : ['pepper','potato', 'tomato','spicy']},
-                                                {image : '/category1.jpg', createdOn:'December 14 2023', title:'Super Creamy White Chicken Chili with Seasoned Tots', paras : 'This White Chicken Chili is THE BOMB. Chicken, white beans, and green chiles folded up in a creamy soup blanket and topped with golden, crispity seasoned tots, cilantro, green onion, and hot sauce. WOW. Top combo', tags : ['pepper','potato', 'tomato','spicy']},
-                                                {image : '/category1.jpg', createdOn:'December 14 2023', title:'Super Creamy White Chicken Chili with Seasoned Tots', paras : 'This White Chicken Chili is THE BOMB. Chicken, white beans, and green chiles folded up in a creamy soup blanket and topped with golden, crispity seasoned tots, cilantro, green onion, and hot sauce. WOW. Top combo', tags : ['pepper','potato', 'tomato','spicy']},
-                                            ])
+    const [latestList, setLatestList] = useState([])
     const [impImg, setImpImg] = useState('maleImg');
 
     const [name, setName] = useState('');
