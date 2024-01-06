@@ -1,0 +1,57 @@
+.wholeCont {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: none;
+}
+
+.mouseDiv {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.35);
+    user-select: none;
+    pointer-events: none;
+    transition: 0.09s !important;
+    scroll-behavior: smooth;
+}
+
+.mouseDivDark {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mouseDotDiv {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 10000;
+    background-color: rgb(255, 196, 0);
+    user-select: none;
+    pointer-events: none;
+    transition: 0s !important;
+}
+
+.topScrollBar {
+    position: fixed;
+    height: 2px;
+    bottom: 85vh;
+    border-radius: 25px;
+    background-color: #025951;
+    z-index: 10;
+}
+.topScrollBarOnScroll {
+    transition: bottom  0.5s ease-in-out;
+    bottom: 90vh;
+}
+
+.childCont {
+    width: 100%;
+    height: auto;
+    background-color: var(--background-color);
+}

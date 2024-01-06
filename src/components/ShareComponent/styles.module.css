@@ -1,0 +1,42 @@
+.wholeCont {
+    position: fixed;
+    width: 5vh;
+    height: 30vh;
+    right: 0;
+    top: 30vh;
+    border-radius: 25px 0 0 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    z-index: 10;
+}
+
+.eachMediaCont {
+    position: relative;
+    height: 6vh;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eachMediaCont:hover {
+    animation: shareSlideExtend 0.5s forwards linear;
+}
+
+.eachMediaImage {
+    width: 50%;
+    height: auto;
+}
+
+@keyframes shareSlideExtend {
+    0% {
+        width: 5vh;
+    }
+
+    100% {
+        width: 10vh;
+        border-radius: 5px 0 0 5px;
+    }
+}

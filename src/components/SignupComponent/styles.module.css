@@ -1,0 +1,283 @@
+.wholeCont {
+    position: fixed;
+    width: 100%;
+    height: 90vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.registrationCont {
+    min-width: 80vh;
+    max-width: 100%;
+    min-height: 60vh;
+    max-height: 90vh;
+    border-radius: 25px;
+    background-color: #ffffff;
+    padding: 3vh 0;
+    margin: 4vh 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 2;
+    box-shadow: 0px 0px 40px 4px #000000;
+}
+
+.inputCont {
+    position: relative;
+    width: 80%;
+    min-height: 8vh;
+    border: 2px solid #535353;
+    margin: 1.5vh 0;
+    border-radius: 5px;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.inputContClicked {
+    border: 2px solid #278a91;
+}
+
+.inputContWrong {
+    border: 2px solid red;
+}
+
+.inputContRight {
+    border: 2px solid #61ad22;
+}
+
+.inputTitle {
+    position: absolute;
+    width: max-content;
+    padding: 0 1vh;
+    margin: 0;
+    cursor: text;
+    color: #535353;
+    font-weight: 500;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.inputTitleClicked {
+    animation: inputTitleSlide 0.25s forwards ease-in-out;
+}
+
+.inputBox {
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    text-indent: 1vh;
+    color: #535353;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+}
+
+.passwordShowBtn {
+    height: 2vh;
+    width: auto;
+    margin-right: 1vh;
+    cursor: pointer;
+}
+
+.passwordShowBtn:active {
+    opacity: 0.7;
+}
+
+.signupButton {
+    width: 80%;
+    height: 8vh;
+    margin: 2vh 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 12px;
+    background-color: #000000;
+    border: 2.5px solid #000000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.signupButton:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+.signupButton:active {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+.orDiv {
+    width: 100%;
+    height: 1vh;
+    margin: 2vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.line {
+    width: 35%;
+    height: 2.5px;
+}
+
+.orText {
+    margin: 0;
+    color: #60656C;
+}
+
+.bottomCont {
+    width: 85%;
+    height: 9vh;
+    margin-top: 1.5vh;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.eachAuthIcon {
+    height: 7.5vh;
+    width: auto;
+    border-radius: 50%;
+    padding: 1.25vh;
+    cursor: pointer;
+}
+
+.eachAuthIcon:hover {
+    box-shadow: inset 0 0 4px #000000;
+}
+
+.eachAuthIcon:active {
+    padding: 2vh;
+    box-shadow: inset 0 0 4px #000000;
+}
+
+.bottomTextCont {
+    bottom: -2.5vh;
+    display: flex;
+    gap: 1vh;
+    cursor: pointer;
+}
+
+.bottomText {
+    font-size: 0.75rem;
+    margin: 0;
+    color: #60656C;
+}
+
+.bottomTextRed {
+    font-size: 0.75rem;
+    margin: 0;
+    color: #F20000;
+}
+
+.bottomText:hover .bottomTextRed {
+    border-bottom: 1px solid #F20000;
+}
+
+.img1 {
+    position: absolute;
+    height: 50%;
+    width: auto;
+    right: 5%;
+    z-index: 1;
+}
+
+.img2 {
+    position: absolute;
+    height: 50%;
+    width: auto;
+    left: 15%;
+    z-index: 1;
+}
+
+@keyframes inputTitleSlide {
+    0% {
+        font-size: 1rem;
+        background-color: transparent;
+        top: 2vh;
+        left: 0;
+    }
+
+    100% {
+        font-size: 0.9rem;
+        top: -2vh;
+        left: 1vh;
+    }
+}
+
+@media screen and (max-width : 900px) {
+    .leftCont {
+        display: none;
+    }
+
+    .wholeCont {
+        background-size: 75% auto;
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .wholeCont {
+        padding: 0;
+        background-position: center;
+        justify-content: center;
+    }
+
+    .registrationCont {
+        position: relative;
+        margin: 0;
+        right: 0;
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .wholeCont {
+        width: 100%;
+        background-size: 150% auto;
+    }
+
+    .registrationCont {
+        width: 35vh;
+    }
+
+    .inputCont {
+        width: 45vh;
+    }
+
+    .signupButton {
+        width: 45vh;
+    }
+
+    .orDiv {
+        width: 45vh;
+    }
+
+    .bottomCont {
+        width: 45vh;
+    }
+
+    .registrationTitle {
+        font-size: 1.5rem;
+        user-select: none;
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,198 @@
+.wholeCont {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modalCont {
+    width: 60vh;
+    height: 70vh;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 40px 4px #000000;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10vh 0;
+}
+
+.inputCont {
+    position: relative;
+    width: 50vh;
+    min-height: 8vh;
+    border: 2px solid #535353;
+    margin: 1.5vh 0;
+    border-radius: 5px;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.inputContClicked {
+    border: 2px solid #278a91;
+}
+
+.inputTitle {
+    position: absolute;
+    width: max-content;
+    padding: 0 1vh;
+    margin: 0;
+    color: #535353;
+    font-weight: 500;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.inputTitleClicked {
+    animation: inputTitleSlide 1s forwards ease-in-out;
+}
+
+.inputBox {
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    text-indent: 1vh;
+    color: #535353;
+    background-color: #c7edf0;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+}
+
+.passwordShowBtn {
+    height: 2vh;
+    width: auto;
+    margin-right: 1vh;
+    cursor: pointer;
+}
+
+.passwordShowBtn:active {
+    opacity: 0.7;
+}
+
+.loginFailedText {
+    width: 80%;
+    height: auto;
+    top: 2vh;
+    margin: 0;
+    font-size: 0.75rem;
+    color: red;
+    text-align: center;
+}
+
+.forgotCont {
+    width: 80%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkBoxCont {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.rememberMeCheckBox {
+    width: 2vh;
+    height: 2vh;
+    border-radius: 50%;
+    border: 1px solid #6c6c6c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tickImg {
+    width: 2vh;
+    height: 2vh;
+    margin: 0;
+}
+
+.rememberMeText {
+    font-size: 0.75rem;
+    color: #6c6c6c;
+    text-indent: 1vh;
+    user-select: none;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.forgotPassText {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(59, 113, 202, 0.8);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+}
+
+.forgotPassText:active {
+    opacity: 0.8;
+}
+
+.incorrectText {
+    color: red;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.submitBtn {
+    width: 60%;
+    height: 7vh;
+    color: #ffffff;
+    border-radius: 25px;
+    background-color: #3b71ca;
+    background-color: #000000;
+    cursor: pointer;
+    border: 1.5px solid #000000;
+    margin-bottom: 2vh;
+}
+
+.submitBtn:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.submitBtn:active {
+    background-color: rgba(59, 113, 202, 0.8);
+    color: #ffffff;
+    background-color: #000000;
+
+}
+
+@keyframes inputTitleSlide {
+    0% {
+        font-size: 1rem;
+        background-color: transparent;
+        top: 2vh;
+        left: 0;
+    }
+
+    100% {
+        font-size: 0.9rem;
+        top: -2vh;
+        left: 1vh;
+    }
+}
+
+@media screen and (max-width : 450px) {
+    .modalCont {
+        width: 95%;
+    }
+    .inputCont {
+        width: 90%;
+    }
+}

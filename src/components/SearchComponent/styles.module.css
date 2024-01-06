@@ -1,0 +1,258 @@
+.wholeCont {
+    width: 60vh;
+    height: 6vh;
+    right: 2vh;
+    border-radius: 25px;
+    background-color: #00604d5e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 11;
+}
+
+.wholeContSelected{
+    position: absolute;
+    top: 2vh;
+    animation: openSearchModal 0.5s forwards linear;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    z-index: 11;
+}
+
+.searchCont{
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox {
+    width: 54vh;
+    height: 100%;
+    text-indent: 5vh;
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.searchBoxSelected {
+    width: 54vh;
+    height: 100%;
+    text-indent: 1vh;
+    color: #6c6c6c;
+    font-size: 1rem;
+    background-color: transparent;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    animation: extendInputBox 0.75s forwards linear;
+}
+
+.searchIcon {
+    width: 4.5vh;
+    height: auto;
+    cursor: pointer;
+}
+
+.searchIcon:active {
+    width: 4vh;
+    height: auto;
+}
+
+.searchModal{
+    width: 95%;
+    min-height: 40vh;
+    max-height: 65vh;
+    border-top: 1px solid #6c6c6c;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.searchResultModals {
+    width: 100%;
+    min-height: 40vh;
+    max-height: 65vh;
+    padding: 1vh;
+}
+
+.searchModalTitles{
+    width: max-content;
+    font-size: 0.75rem;
+    color: #6c6c6c;
+    margin: 2vh 0 ;
+    border-bottom: 1px solid #6c6c6c;
+}
+
+.searchScrollingBox{
+    width: 100%;
+    min-height: 10vh;
+    max-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: scroll;
+}
+.searchScrollingBox::-webkit-scrollbar {
+    width: 5px;
+    height: 45vh;
+}
+
+.searchScrollingBox::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #00604d91;
+    border-radius: 10px;
+}
+
+.searchScrollingBox::-webkit-scrollbar-thumb {
+    background: #00604d91;
+    border-radius: 12px;
+}
+
+.searchScrollingBox::-webkit-scrollbar-thumb:hover {
+    background: #e7e7e7;
+}
+
+.eachSearchResultBox {
+    width: 100%;
+    min-height: 5vh;
+    margin: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.eachSearchResultBox:hover{
+    background-color: #e7e7e7;
+}
+
+.trendingIconImg{
+    width: 4vh;
+    height: 4vh;
+    margin-right: 2vh;
+}
+
+.eachSearchResult{
+    width: 100%;
+    height: auto;
+    font-weight: 600;
+    color: var(--primary-font-color);
+    font-size: 1rem;
+    margin: 0;
+}
+
+@keyframes openSearchModal {
+    0% {
+        width: 60vh;
+        height: 6vh;
+    }
+
+    100% {
+        width: 60%;
+        height: 75vh;
+    }
+}
+@keyframes openSearchModal900px {
+    0% {
+        width: 60vh;
+        height: 6vh;
+    }
+
+    100% {
+        width: 80%;
+        height: 75vh;
+    }
+}
+@keyframes openSearchModal550px {
+    0% {
+        width: 60vh;
+        height: 6vh;
+    }
+
+    100% {
+        width: 95%;
+        height: 85vh;
+    }
+}
+
+@keyframes extendInputBox {
+    0% {
+        width: 60vh;
+    }
+    100% {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width : 900px) {
+    .wholeCont {
+        width: 30vh;
+    }
+    .wholeContSelected {
+        animation: openSearchModal900px 0.5s forwards linear;
+    }
+    .searchModal {
+        max-width: 90%;
+    }
+    .searchBox {
+        width: 24vh;
+    }
+}
+
+@media screen and (max-width : 700px){
+    .searchBoxSelected{
+        color: black;
+    }
+}
+@media screen and (max-width : 600px) {
+    .wholeContSelected {
+        animation: openSearchModal550px 0.5s forwards linear;
+    }
+}
+
+@media screen and (max-width : 500px) {
+    .nameCont {
+        width: max-content;
+        padding: 0 2vh;
+    }
+    .wholeCont {
+
+        width: 10vh;
+        justify-content: center;
+    }
+    .searchBox {
+        display: none;
+    }
+    .searchModal{
+        border-top: 1px solid #000000;
+    }
+    .searchResultModals {
+        width: 100%;
+        height: 75vh;
+    }
+    .mobileModeTrending {
+        display: none;
+    }
+}
+
+@media screen and (max-width : 450px) {
+    .wholeCont {
+        position: fixed;
+        bottom: 10vh;
+        left: 2vh;
+    }
+}
+
+@media screen and (max-width : 400px) {
+
+}
+
+@media screen and (max-width : 350px) {
+
+}

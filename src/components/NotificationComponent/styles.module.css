@@ -1,0 +1,33 @@
+.wholeCont {
+    position: fixed;
+    min-width: 50vh;
+    max-width: 35%;
+    min-height: 10vh;
+    max-height: auto;
+    top: 10vh;
+    right: 2vh;
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+    padding: 1vh 2vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 10;
+}
+
+.message {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--primary-font-family);
+    color: var(--primary-font-color);
+}
+
+.coloredTimer {
+    position: absolute;
+    right: 0;
+    border-radius: 5;
+    height: 5px;
+    bottom: 0vh;
+}
