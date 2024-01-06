@@ -2,7 +2,7 @@
 export const routes = {
 
     // baseUrl : 'http://localhost:5000',
-    baseUrl : 'https://recipe-server.netlify.app',
+    baseUrl : 'https://recipes-server-czdy.onrender.com',
     api : {
 
         login : '/login',
