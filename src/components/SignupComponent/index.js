@@ -79,7 +79,7 @@ export default function SignupComponent() {
             <div className={styles.registrationCont} onClick={e => e.stopPropagation()}>
                 <label className={`${styles.inputCont} ${selected === 'name'? styles.inputContClicked : ''}`} 
                     onClick={e => {e.stopPropagation(),setSelected('name')}}>
-                    <p className={`${styles.inputTitle} ${selected === 'name'|| signupCreds.email != ''  ? styles.inputTitleClicked : ''}`}>Name</p>
+                    <p className={`${styles.inputTitle} ${selected === 'name'|| signupCreds.name != ''  ? styles.inputTitleClicked : ''}`}>Name</p>
                     <input className={`${styles.inputBox} ${selected === 'name' ? styles.inputBoxClicked : ''}`}
                         name='name'
                         ref={inputRef}

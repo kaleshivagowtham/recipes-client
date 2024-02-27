@@ -104,7 +104,7 @@ export default function Layout({children}) {
         <div className={styles.wholeCont} id='layoutId' onClick={e => dispatch(closeSearchModal())}>
             <NavBar scrollUp={scrollUp} totalHeight={totalHeight} />
             <ShareComponent />
-            {isLoggedIn && <NotificationComponent message='loggedin sucessfully' imp='1'/> }
+            {/* {isLoggedIn && <NotificationComponent message='loggedin sucessfully' imp='1'/> } */}
             <hr className={`${styles.topScrollBar} ${scrollUp > 0 ? styles.topScrollBarOnScroll : ''}`} style={topScrollBarStyle}></hr>
             {isLoginModalOpen && <LoginComponent />}
             {isSignupModalOpen && <SignupComponent />}

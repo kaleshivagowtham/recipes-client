@@ -9,6 +9,7 @@ import ForgotPasswordComponent from '../ForgotPasswordComponent';
 // import useLocalStorage from '../../utils/useLocalStorage';
 import axios from 'axios';
 import { routes } from '@/utils/routes';
+import NotificationComponent from '../NotificationComponent';
 
 export default function LoginComponent() {
 
@@ -53,6 +54,9 @@ export default function LoginComponent() {
                 dispatch(loginAction(resp.data.savedUser));
                 dispatch(tokenAction(resp.data.token));
                 dispatch(closeLoginModal());
+                return (
+                    <NotificationComponent message='Login successful' imp='1'/>
+                )
             }
             else if(resp.data.message === 'Login unsuccessful')
             {

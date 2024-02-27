@@ -7,6 +7,8 @@ import {routes} from '@/utils/routes';
 import axios from 'axios';
 import NotificationComponent from '../NotificationComponent';
 import useLocalStorage from '@/utils/useLocalStorage';
+import { storage } from '@/utils/firebaseConfig';
+import { ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 
 export default function UpdateRecipeComponent({recipeId}) {
 
@@ -47,6 +49,7 @@ export default function UpdateRecipeComponent({recipeId}) {
     const [currTag, setCurrTag] = useState('');
     const [currIngredient, setCurrIngredient] = useState('');
     const [isWriter, setIsWriter] = useState();
+    const [mainImg, setMainImg] = useState();
 
     useEffect(() => {
         const temp = newRecipe;
@@ -102,6 +105,18 @@ export default function UpdateRecipeComponent({recipeId}) {
         setNewRecipe(temp);
     }
 
+    const deletePrevImgFromFirebase = async (deleteImgUrl) => {
+        console.log(deleteImgUrl);
+        try {
+            const fileRef = ref(storage,deleteImgUrl);
+            console.log("FileRef: ",fileRef);
+            deleteObject(fileRef);
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
     const updateHandler = async (e) => {
         if(isLoggedIn === false)
             dispatch(openLoginModal());
@@ -112,34 +127,60 @@ export default function UpdateRecipeComponent({recipeId}) {
             console.log("Paras missing");
         }
         else {
-            const updateResponse = await axios.put( updateTheRecipeUrl , {
-                    updateRecipe : newRecipe,
-                    token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token")
-            })
-            .then( resp => {
-                if(resp.data.message === 'Recipe updated')
-                {
-                    console.log("Recipe Updated");
-                    setUpdated(true);
-                    if(window !== undefined){
-                        window.open(`/recipe/${recipeId}`);
-                        window.close();
-                    }
+            const storageRef = ref(storage, `/blogs-images/${mainImg.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, mainImg);
+            uploadTask.on (
+                "state_changed",
+                (snapshot) => {
+                    const percent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    // setPercent(percent);
+                },
+                err => {
+                    alert("There was an error uploading the image")
+                    return;
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        const temp = newRecipe;
+                        temp.titleImg = url;
+                        setNewRecipe(temp);
+                    })
+                    .then(() => {
+                        axios.put( updateTheRecipeUrl , {
+                                updateRecipe : newRecipe,
+                                token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token")
+                        })
+                        .then( resp => {
+                            if(resp.data.message === 'Recipe updated')
+                            {
+                                console.log("Recipe Updated");
+                                deletePrevImgFromFirebase(resp.data.deleteImgUrl);
+                                setUpdated(true);
+                                if(window !== undefined){
+                                    window.open(`/recipe/${recipeId}`);
+                                    window.close();
+                                }
+                            }
+                            else if(resp.data.message === 'No Title!')
+                            {
+                                console.log("Pleas enter a title")
+                            }
+                            else if(resp.data.message === 'No Content!')
+                            {
+                                console.log("No Content!")
+                            }
+                            else if(resp.data.message === 'Title already exists')
+                            {
+                                console.log("Title already exists");
+                            }
+                        })
+                        .catch(err => console.log("ERROR : ",err.message));
+                    })
                 }
-                else if(resp.data.message === 'No Title!')
-                {
-                    console.log("Pleas enter a title")
-                }
-                else if(resp.data.message === 'No Content!')
-                {
-                    console.log("No Content!")
-                }
-                else if(resp.data.message === 'Title already exists')
-                {
-                    console.log("Title already exists");
-                }
-            })
-            .catch(err => console.log("ERROR : ",err.message));
+            )
         }
     }
 
@@ -221,25 +262,27 @@ export default function UpdateRecipeComponent({recipeId}) {
                     <h1 className={styles.title}>{newRecipe.title}</h1>
                 }
                 </div>
-                {
-                    newRecipe.titleImg !== ''
-                    ?
-                    <div className={styles.imageCont}>
+                
+                    <div className={`${styles.imageCont} ${mainImg ? styles.imageContUploaded : ''}`}>
                         {/* <img src={ typeof(window) !== undefined  ? URL.createObjectURL(newRecipe.titleImg) : ''} 
                             alt='Title Image' className={styles.titleImg}
                         /> */}
+                        <img src={mainImg ? URL.createObjectURL(mainImg) : newRecipe.titleImg} alt='Title Image' className={styles.titleImg}/>
                         <label className={styles.imageChangeCont} onChange={e => imageHandler(e)}>
-                            <input type='file' accept='image.jpeg, image/png' className={styles.uploadChangeInput} />
+                            <input className={styles.uploadChangeInput} 
+                                type='file' accept='image.jpeg, image/png'
+                                onChange={e => setMainImg(e.target.files[0])}
+                            />
                             {/* <button className={styles.uploadChangeBtn}>Change Image</button> */}
                             <img src='/cameraIcon.png' alt='camera icon' className={styles.uploadChangeImg}/>
                         </label>
                     </div>
-                    :
-                    <label className={styles.imageCont} onChange={e => imageHandler(e)}>
+                    
+                    {/* <label className={styles.imageCont} onChange={e => imageHandler(e)}>
                         <input type='file' accept='image.jpeg, image/png' className={styles.uploadInput} />
                         <button className={styles.uploadBtn}>Upload Image</button>
-                    </label>
-                }
+                    </label> */}
+                
 
                 <div className={styles.tagsCont} onClick={tagsContClickHandler}>
                     {

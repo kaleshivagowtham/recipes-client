@@ -6,15 +6,15 @@ import { routes } from "@/utils/routes";
 import axios from "axios";
 import NotificationComponent from "../NotificationComponent";
 
-export default function HomeComponent () {
+export default function HomeComponent ({latestList, error}) {
 
-    const getAllRecipeUrl = `${routes.baseUrl}${routes.api.getallrecipe}`;
+    // const getAllRecipeUrl = `${routes.baseUrl}${routes.api.getallrecipe}`;
 
     const categories = [{image : '/category1.jpg',name : 'Quick & Easy'},{image : '/category1.jpg',name : 'Dinner'},{image : '/category1.jpg',name : 'Vegetarian'},
                     {image : '/category1.jpg',name : 'Healthy'},{image : '/category1.jpg',name : 'Meal Prep'},{image : '/category1.jpg',name : 'Soups'},
                     {image : '/category1.jpg',name : 'Salads'}];
 
-    const [latestList, setLatestList] = useState([])
+    // const [latestList, setLatestList] = useState([])
     const [impImg, setImpImg] = useState('maleImg');
 
     const [name, setName] = useState('');
@@ -32,16 +32,17 @@ export default function HomeComponent () {
         },3000)
     },[impImg])
 
-    useEffect(() => {
-        const response = axios.get(getAllRecipeUrl)
-        .then(resp => {
-            setLatestList(resp.data);
-            console.log(resp.data);
-        })
-        .catch(err => {
-            console.log(err.message);
-        })
-    },[])
+    // useEffect(() => {
+    //     const response = axios.get(getAllRecipeUrl)
+    //     .then(resp => {
+    //         setLatestList(resp.data);
+    //         console.log(resp.data);
+    //     })
+    //     .catch(err => {
+    //         console.log(err.message);
+    //     })
+    // },[])
+
 
     const nameAdder = useMemo (() => {
         if(i < 49){
@@ -103,13 +104,13 @@ export default function HomeComponent () {
                             return (
                                 <Link key={item} className={styles.leftEachItem}
                                     href= {`recipe/${item._id}`}>
-                                    <div className={styles.leftEachItemImgCont}>
-                                        <img className={styles.leftEachItemImg} 
-                                            src={item.image ? item.image : '/foodIcon.png'} alt={item.title}
-                                        />
+                                    <div className={styles.leftEachItemImgCont} style={{backgroundImage:`url(${item.titleImg ? item.titleImg : '/foodIcon.png'})`}}>
+                                        {/* <img className={styles.leftEachItemImg} 
+                                            src={item.titleImg ? item.titleImg : '/foodIcon.png'} alt={item.title}
+                                        /> */}
                                     </div>
                                     <div className={styles.leftEachItemTextCont}>
-                                        <p className={styles.eachItemDate}>{item.createdOn}</p>
+                                        <p className={styles.eachItemDate}>{item.createdOn.slice(0,10)}</p>
                                         <p className={styles.eachItemTitle}>{item.title}</p>
                                         <p className={styles.eachItemDesc}>{item.paras}</p>
                                     </div>
@@ -118,9 +119,9 @@ export default function HomeComponent () {
                         })
                     }
                     </div>
-                    <div className={`${styles.listRightCont}`}>
+                    {/* <div className={`${styles.listRightCont}`}>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -48,6 +48,8 @@ export default function RecipeComponent({recipeId}) {
         })
     },[recipeId])
 
+    console.log(recipe.titleImg);
+
     useEffect(() => {
         const response = axios.post(checkLikedUrl , {
             token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token"),
@@ -163,7 +165,7 @@ export default function RecipeComponent({recipeId}) {
                         <p className={styles.writtenBy}>{userName}</p>
                     </Link>
                     <div className={styles.imageCont}>
-                        <img src={'/homePageBackground.jpeg'} alt='Title Image' className={styles.titleImg}/>
+                        <img src={recipe.titleImg} alt='Title Image' className={styles.titleImg}/>
                     </div>
                 
                   <p className={styles.paras}>{recipe.paras}</p>

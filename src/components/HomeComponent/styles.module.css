@@ -134,20 +134,30 @@
 .leftEachItem {
     width: 100%;
     height: 180px;
-    background-color: #b8b8b8;
     margin: 0.5vh 0;
-    border-radius: 25px;
+    overflow: hidden;
     display: flex;
 }
 
 .leftEachItemImgCont {
     width: 30%;
     height: 90%;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+.leftEachItem:hover .leftEachItemImgCont{
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    background-size: auto 120%;
 }
 
 .leftEachItemImg {
     width: 100%;
-    height: 90%;
+    height: auto;
 }
 
 .leftEachItemTextCont {

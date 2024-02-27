@@ -9,6 +9,8 @@ import axios from 'axios';
 import NotificationComponent from '../NotificationComponent';
 import useLocalStorage from '@/utils/useLocalStorage';
 import { useRouter } from 'next/router';
+import {storage} from '../../utils/firebaseConfig';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 export default function WriteNewRecipe() {
 
@@ -17,13 +19,17 @@ export default function WriteNewRecipe() {
     const tagsInputRef = useRef();
     const ingredientInputRef = useRef();
 
-    const recipeAddURL = `${routes.baseUrl}${routes.api.addrecipe}`;
+    console.log("storage : ",storage);
+
+    const recipeAddURL = `${routes.baseUrl}${routes.api.addStory}`;
 
     const dispatch = useDispatch();
 
     const {isLoggedIn} = useSelector(store => store.loggedIn);
     const {isLoginModalOpen} = useSelector(store => store.loginModal);
     const {userName} = useSelector(store => store.loggedIn);
+
+    const [percent, setPercent] = useState();
 
     useEffect(() => {
         if(isLoggedIn === false)
@@ -49,6 +55,7 @@ export default function WriteNewRecipe() {
                                              'likedBy' : [],
                                              'createdOn' : []
                                             });
+    const [mainImg, setMainImg] = useState();
     const [currFocus, setCurrFocus] = useState(0);
     const [posted , setPosted] = useState(false);
     const [currTag, setCurrTag] = useState('');
@@ -67,9 +74,10 @@ export default function WriteNewRecipe() {
     }
 
     const imageHandler = (e) => {
-        const temp = {...newRecipe};
-        temp.titleImg = e.target.files[0];
-        setNewRecipe(temp);
+        // const temp = {...newRecipe};
+        // temp.titleImg = e.target.files[0];
+        // setNewRecipe(temp);
+        setMainImg(e.target.files[0]);
     }
 
     const paraWriter = (e) => {
@@ -83,40 +91,71 @@ export default function WriteNewRecipe() {
             router.push(`/recipe/${posted}`);
     },[posted])
 
+    console.log("NewRecipe: ", newRecipe);
+
     const submitHandler = async (e) => {
         if(isLoggedIn === false)
             dispatch(openLoginModal());
         else if(newRecipe.title === '') {
-            console.log("Title missing")
+            alert("Title missing");
+            return;
         }
         else if(newRecipe.paras === '') {
-            console.log("Paras missing");
+            alert("Paras missing");
         }
         else {
-            axios.post( recipeAddURL , {
-                    newRecipe : newRecipe,
-                    token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token")
-            })
-            .then( resp => {
-                if(resp.data.message === 'Recipe saved')
-                {
-                    console.log("Recipe Saved");
-                    setPosted(resp.data.id);
-                }
-                else if(resp.data.message === 'No Title!')
-                {
-                    console.log("Pleas enter a title")
-                }
-                else if(resp.data.message === 'No Content!')
-                {
-                    console.log("No Content!")
-                }
-                else if(resp.data.message === 'Title already exists')
-                {
-                    console.log("Title already exists");
-                }
-            })
-            .catch(err => console.log(err));
+            if(mainImg) {
+                const storageRef = ref(storage, `/blogs-images/${mainImg.name}`);
+                const uploadTask = uploadBytesResumable(storageRef, mainImg);
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        const percent = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes)*100
+                        );
+                        setPercent(percent);
+                    },
+                    (err) => {
+                        console.log(err);
+                        alert("The image is not saved!")
+                        return;
+                    },
+                    () => {
+                        getDownloadURL(uploadTask.snapshot.ref)
+                        .then(url => {
+                            const temp = newRecipe;
+                            temp.titleImg = url;
+                            setNewRecipe(temp);
+                        })
+                        .then(() => {
+                            axios.post( recipeAddURL , {
+                                    newRecipe : newRecipe,
+                                    token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token")
+                            })
+                            .then( resp => {
+                                if(resp.data.message === 'Recipe saved')
+                                {
+                                    console.log("Recipe Saved");
+                                    setPosted(resp.data.id);
+                                }
+                                else if(resp.data.message === 'No Title!')
+                                {
+                                    alert("Pleas enter a title")
+                                }
+                                else if(resp.data.message === 'No Content!')
+                                {
+                                    console.log("No Content!")
+                                }
+                                else if(resp.data.message === 'Title already exists')
+                                {
+                                    alert("Title already exists");
+                                }
+                            })
+                            .catch(err => console.log(err));
+                        });
+                    }
+                )
+            }
         }
     }
 
@@ -209,10 +248,10 @@ export default function WriteNewRecipe() {
                 }
                 </div>
                 {
-                    newRecipe.titleImg !== ''
+                    mainImg
                     ?
-                    <div className={styles.imageCont}>
-                        <img src={URL.createObjectURL(newRecipe.titleImg)} alt='Title Image' className={styles.titleImg}/>
+                    <div className={`${styles.imageCont} ${mainImg !== '' ? styles.imageContUploaded : ''}`}>
+                        <img src={newRecipe.titleImg === '' ? URL.createObjectURL(mainImg) : newRecipe.titleImg} alt='Title Image' className={styles.titleImg}/>
                         <label className={styles.imageChangeCont} onChange={e => imageHandler(e)}>
                             <input type='file' accept='image.jpeg, image/png' className={styles.uploadChangeInput} />
                             {/* <button className={styles.uploadChangeBtn}>Change Image</button> */}

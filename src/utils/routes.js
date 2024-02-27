@@ -2,7 +2,7 @@
 export const routes = {
 
     // baseUrl : 'http://localhost:5000',
-    baseUrl : 'https://recipes-server-czdy.onrender.com',
+    baseUrl : process.env.BASE_URL,
     api : {
 
         login : '/login',

@@ -126,7 +126,7 @@
     height: 50vh;
     margin-top: 5vh;
     border-radius: 12px;
-    background-color: #d4d4d4;
+    /* background-color: #d4d4d4; */
     overflow-y: hidden;
     display: flex;
     align-items: center;
@@ -135,8 +135,8 @@
 }
 
 .titleImg {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 40vh;
     position: static;
 }
 

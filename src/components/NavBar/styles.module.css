@@ -58,8 +58,13 @@
     height: auto;
     margin: 0;
     font-size: 0.9rem;
-    color: var(--primary-font-color);
+    /* color: var(--primary-font-color); */
+    color: #ffffff;
     font-weight: 600;
+}
+
+.emailTextScroll {
+    display: none;
 }
 
 .logoutCont {

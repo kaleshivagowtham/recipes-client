@@ -5,6 +5,7 @@ const initialState = {
     isLoggedIn : false,
     userEmail : '',
     userName : '',
+    userProfilePic : '',
     jwt_auth_token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token") ? useLocalStorage.getItemFromLocalStorage("jwt_auth_token") : ''
 }
 
@@ -17,6 +18,7 @@ const loginSlice = createSlice({
             state.isLoggedIn = true;
             state.userName = action.payload.name;
             state.userEmail = action.payload.email;
+            state.userProfilePic = action.payload.profilePic;
         },
         tokenAction : (state, action) => {
             if(state.jwt_auth_token === '')
@@ -28,6 +30,7 @@ const loginSlice = createSlice({
             state.userName = '';
             state.userEmail = '';
             state.jwt_auth_token = '';
+            state.userProfilePic = '';
             useLocalStorage.removeItemFromLocalStorage("jwt_auth_token");
         }
     }
