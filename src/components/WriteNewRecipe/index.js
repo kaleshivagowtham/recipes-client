@@ -21,7 +21,8 @@ export default function WriteNewRecipe() {
 
     console.log("storage : ",storage);
 
-    const recipeAddURL = `${routes.baseUrl}${routes.api.addStory}`;
+    const recipeAddURL = `${routes.baseUrl}${routes.api.addRecipe}`;
+    console.log(recipeAddURL)
 
     const dispatch = useDispatch();
 
@@ -88,7 +89,7 @@ export default function WriteNewRecipe() {
 
     useEffect(() => {
         if(posted !== false)
-            router.push(`/recipe/${posted}`);
+            router.replace(`/recipe/${posted}`);
     },[posted])
 
     console.log("NewRecipe: ", newRecipe);
@@ -136,7 +137,7 @@ export default function WriteNewRecipe() {
                                 if(resp.data.message === 'Recipe saved')
                                 {
                                     console.log("Recipe Saved");
-                                    setPosted(resp.data.id);
+                                    setPosted(newRecipe.title.replace('/ /g', '-'));
                                 }
                                 else if(resp.data.message === 'No Title!')
                                 {

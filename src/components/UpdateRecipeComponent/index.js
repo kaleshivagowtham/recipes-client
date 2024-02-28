@@ -8,10 +8,12 @@ import axios from 'axios';
 import NotificationComponent from '../NotificationComponent';
 import useLocalStorage from '@/utils/useLocalStorage';
 import { storage } from '@/utils/firebaseConfig';
+import {useRouter} from 'next/router';
 import { ref, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 
 export default function UpdateRecipeComponent({recipeId}) {
 
+    const router = useRouter();
     const paraText = useRef();
     const tagsInputRef = useRef();
     const ingredientInputRef = useRef();
@@ -160,7 +162,7 @@ export default function UpdateRecipeComponent({recipeId}) {
                                 deletePrevImgFromFirebase(resp.data.deleteImgUrl);
                                 setUpdated(true);
                                 if(window !== undefined){
-                                    window.open(`/recipe/${recipeId}`);
+                                    router.replace(`/recipe/${newRecipe.title.replace('/ /g', '-')}`);
                                     window.close();
                                 }
                             }

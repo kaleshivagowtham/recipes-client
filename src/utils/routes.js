@@ -2,7 +2,7 @@
 export const routes = {
 
     // baseUrl : 'http://localhost:5000',
-    baseUrl : process.env.BASE_URL,
+    baseUrl : process.env.NEXT_PUBLIC_BASE_URL,
     api : {
 
         login : '/login',
@@ -21,7 +21,7 @@ export const routes = {
 
         getrecipe : '/getrecipe',
 
-        addrecipe : '/addrecipe',
+        addRecipe : '/addrecipe',
 
         updaterecipe : '/updaterecipe',
 

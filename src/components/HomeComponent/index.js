@@ -6,15 +6,15 @@ import { routes } from "@/utils/routes";
 import axios from "axios";
 import NotificationComponent from "../NotificationComponent";
 
-export default function HomeComponent ({latestList, error}) {
+export default function HomeComponent () {
 
-    // const getAllRecipeUrl = `${routes.baseUrl}${routes.api.getallrecipe}`;
+    const getAllRecipeUrl = `${routes.baseUrl}${routes.api.getallrecipe}`;
 
     const categories = [{image : '/category1.jpg',name : 'Quick & Easy'},{image : '/category1.jpg',name : 'Dinner'},{image : '/category1.jpg',name : 'Vegetarian'},
                     {image : '/category1.jpg',name : 'Healthy'},{image : '/category1.jpg',name : 'Meal Prep'},{image : '/category1.jpg',name : 'Soups'},
                     {image : '/category1.jpg',name : 'Salads'}];
 
-    // const [latestList, setLatestList] = useState([])
+    const [latestList, setLatestList] = useState([])
     const [impImg, setImpImg] = useState('maleImg');
 
     const [name, setName] = useState('');
@@ -32,16 +32,16 @@ export default function HomeComponent ({latestList, error}) {
         },3000)
     },[impImg])
 
-    // useEffect(() => {
-    //     const response = axios.get(getAllRecipeUrl)
-    //     .then(resp => {
-    //         setLatestList(resp.data);
-    //         console.log(resp.data);
-    //     })
-    //     .catch(err => {
-    //         console.log(err.message);
-    //     })
-    // },[])
+    useEffect(() => {
+        const response = axios.get(getAllRecipeUrl)
+        .then(resp => {
+            setLatestList(resp.data);
+            // console.log(resp.data);
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+    },[])
 
 
     const nameAdder = useMemo (() => {
@@ -103,7 +103,7 @@ export default function HomeComponent ({latestList, error}) {
                         latestList?.map((item) => {
                             return (
                                 <Link key={item} className={styles.leftEachItem}
-                                    href= {`recipe/${item._id}`}>
+                                    href= {'recipe/'+item.title.replace(/ /g,'-')}>
                                     <div className={styles.leftEachItemImgCont} style={{backgroundImage:`url(${item.titleImg ? item.titleImg : '/foodIcon.png'})`}}>
                                         {/* <img className={styles.leftEachItemImg} 
                                             src={item.titleImg ? item.titleImg : '/foodIcon.png'} alt={item.title}

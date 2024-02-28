@@ -8,35 +8,12 @@ import { loginAction } from '@/features/modal/loginSlice'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({latestList,error, nothing}) {
+export default function Home() {
 
     return (
       <main>
-        <HomeComponent latestList={latestList} error={error}/>
+        <HomeComponent />
       </main>
     )
 }
 
-export async function getServerSideProps() {
-
-  try {
-      const getAllRecipeUrl = `${routes.baseUrl}${routes.api.getallrecipe}`;
-      
-      const response = await axios.get(getAllRecipeUrl);
-      const latestList = response.data;
-
-      return { 
-        props: { 
-          latestList: latestList 
-        } 
-      };
-
-    } 
-    catch (error) {
-      return 
-      { props: {
-        error: error.message 
-        } 
-      };
-  }
-}

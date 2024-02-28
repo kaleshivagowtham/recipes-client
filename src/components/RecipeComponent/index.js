@@ -8,7 +8,7 @@ import { closeLoginModal, openLoginModal } from "../../features/modal/loginModal
 import {routes} from '../../utils/routes';
 import useLocalStorage from "@/utils/useLocalStorage";
 
-export default function RecipeComponent({recipeId}) {
+export default function RecipeComponent({ recipeTitle}) {
 
     const getRecipeUrl = `${routes.baseUrl}${routes.api.getrecipe}`;
     const checkLikedUrl = `${routes.baseUrl}${routes.api.checkLiked}`;
@@ -36,9 +36,11 @@ export default function RecipeComponent({recipeId}) {
     const [likedByMe, setLikedByMe] = useState(false);
     const [isWriter , setIsWriter] = useState(false);
 
+    console.log("Title: ",recipeTitle);
+
     useEffect(() => {
         const response = axios.post(getRecipeUrl , {
-            recipeId : recipeId
+            recipeTitle
         })
         .then(res => {
             setRecipe(res.data);
@@ -46,14 +48,12 @@ export default function RecipeComponent({recipeId}) {
         .catch(err => {
             console.log(err.message);
         })
-    },[recipeId])
-
-    console.log(recipe.titleImg);
+    },[recipeTitle])
 
     useEffect(() => {
         const response = axios.post(checkLikedUrl , {
             token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token"),
-            recipeId : recipe._id
+            recipeTitle
         }).then(resp => {
             setLikedByMe(resp.data.likedByMe);
         })
@@ -79,7 +79,7 @@ export default function RecipeComponent({recipeId}) {
         }
         else {
             const likedCheck = await axios.post(changeLikedUrl ,{
-                recipeId : recipe._id,
+                recipeTitle,
                 token : useLocalStorage.getItemFromLocalStorage("jwt_auth_token")
             })
             .then (res => {
@@ -102,7 +102,7 @@ export default function RecipeComponent({recipeId}) {
         else{
             const likedCheck = await axios.post(likeUrl ,{
                 userName : userName,
-                recipeId : recipeId
+                recipeTitle
             })
             .then (res => {
                 if(res.data === 'No')
@@ -171,7 +171,7 @@ export default function RecipeComponent({recipeId}) {
                   <p className={styles.paras}>{recipe.paras}</p>
             </div>
             {isWriter && 
-                <Link className={styles.updateBtn} href={`/update/${recipeId}`} >Update</Link> 
+                <Link className={styles.updateBtn} href={`/update/${recipeTitle}`} >Update</Link> 
             }
         </div>
     )
