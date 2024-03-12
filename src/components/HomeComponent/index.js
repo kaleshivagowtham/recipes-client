@@ -62,7 +62,7 @@ export default function HomeComponent () {
     return (
         <div className={`${styles.wholeCont}`}>
             <Head>
-                <title>foodGods</title>
+                <title>FoodGods</title>
                 <link rel="profile image" href="/favicon.ico" />
                 <meta charset="UTF-8" />
                 <meta name="description" content="Web developer portfolio website"/>

@@ -39,7 +39,8 @@ export default function NavBar ({scrollUp, totalHeight}) {
                     </div>
                 :
                     <div className = {styles.eachMenuOptionCont} onClick={e => dispatch(openLoginModal())}>
-                        <span className = {styles.eachMenuOptionSpan}></span>
+                        {/* <span className = {styles.eachMenuOptionSpan}></span> */}
+                        <p className={styles.eachMenuOptionAbsolute}>Login/Signup</p>
                         <p className = {styles.eachMenuOption} >Login/Signup</p>
                     </div>
                 }

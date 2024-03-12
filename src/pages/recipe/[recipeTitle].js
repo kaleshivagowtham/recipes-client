@@ -6,16 +6,9 @@ import axios from 'axios';
 
 export default function Recipe() {
 
-    const router = useRouter();
-    const [recipeTitle, setRecipeTitle] = useState('');
-
-    useEffect (() => {
-        setRecipeTitle(router.query.recipeTitle);
-    },[router.query.recipeTitle])
-
     return (
         <div className={styles.wholeCont}>
-            <RecipeComponent recipeTitle={recipeTitle?.replace(/-/g, ' ')}/>
+            <RecipeComponent />
         </div>
     )
 }

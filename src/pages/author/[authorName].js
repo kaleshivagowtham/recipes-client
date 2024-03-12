@@ -5,22 +5,13 @@ import MyRecipesComponent from '@/components/MyRecipesComponent';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { routes } from '@/utils/routes';
+import AuthorProfile from '@/components/AuthoProfile';
 
 export default function Writer() {
 
-    const router = useRouter();
-
-    const [writerId, setWriterId] = useState('');
-
-    const {isLoggedIn} = useSelector(store => store.loggedIn);
-
-    useEffect (() => {
-        setWriterId(router.query.recipeId);
-    },[router.query.writerId])
-
     return (
         <div className={styles.wholeCont}>
-            <MyRecipesComponent writerId={writerId}/>
+            <AuthorProfile />
         </div>
     )
 }

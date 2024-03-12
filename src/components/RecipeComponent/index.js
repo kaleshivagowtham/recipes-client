@@ -7,20 +7,20 @@ import {useSelector, useDispatch} from 'react-redux';
 import { closeLoginModal, openLoginModal } from "../../features/modal/loginModalSlice";
 import {routes} from '../../utils/routes';
 import useLocalStorage from "@/utils/useLocalStorage";
+import { useRouter } from "next/router";
 
-export default function RecipeComponent({ recipeTitle}) {
+export default function RecipeComponent() {
 
     const getRecipeUrl = `${routes.baseUrl}${routes.api.getrecipe}`;
     const checkLikedUrl = `${routes.baseUrl}${routes.api.checkLiked}`;
     const changeLikedUrl = `${routes.baseUrl}${routes.api.changeLiked}`;
     const checkIfWriterUrl = `${routes.baseUrl}${routes.api.checkIfWriter}`;
+    
+    const router = useRouter();
 
     const dispatch = useDispatch();
 
     const {isLoggedIn, userName} = useSelector(store => store.loggedIn);
-
-    const [currFocus, setCurrFocus] = useState('');
-    const [s,b] = useState();
 
     const [recipe, setRecipe] = useState({'writtenBy' : '',
                                         'title' : '',
@@ -36,11 +36,15 @@ export default function RecipeComponent({ recipeTitle}) {
     const [likedByMe, setLikedByMe] = useState(false);
     const [isWriter , setIsWriter] = useState(false);
 
-    console.log("Title: ",recipeTitle);
+    const [recipeTitle, setRecipeTitle] = useState('');
+
+    useEffect (() => {
+        setRecipeTitle(router.query.recipeTitle);
+    },[router.query.recipeTitle])
 
     useEffect(() => {
         const response = axios.post(getRecipeUrl , {
-            recipeTitle
+            recipeTitle : recipeTitle
         })
         .then(res => {
             setRecipe(res.data);
@@ -158,11 +162,11 @@ export default function RecipeComponent({ recipeTitle}) {
             </div>
             <div className={styles.cont}>
                     <h1 className={styles.title}>{recipe.title}</h1>
-                    <Link className={styles.writtenByCont} href={`/profile/${recipe.writtenBy}`}>
+                    <Link className={styles.writtenByCont} href={`/author/${recipe?.authorName}`}>
                         <img src={recipe.titleImg === '' ? '/loginIcon.png' : '/loginIcon.png'} 
                             className={styles.writerAvatar}  alt='writer profile picture'
                         />
-                        <p className={styles.writtenBy}>{userName}</p>
+                        <p className={styles.writtenBy}>{recipe?.authorName}</p>
                     </Link>
                     <div className={styles.imageCont}>
                         <img src={recipe.titleImg} alt='Title Image' className={styles.titleImg}/>

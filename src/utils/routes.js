@@ -33,6 +33,8 @@ export const routes = {
 
         checkIfWriter : '/checkifwriter',
 
+        getAuthor : '/getAuthor',
+
         
     }
 }

@@ -1,0 +1,148 @@
+.wholeCont {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-top: 55vh;
+    padding-bottom: 10vh;
+    display: flex;
+    gap: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url('../../../public/404background.png');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.backgroundProfileImg {
+    position: absolute;
+    background-color: #000000;
+    width: 95%;
+    height: 100%;
+    top: 15vh;
+    background-image: url('../../../public/404background.png');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.leftCont {
+    position: fixed;
+    width: 20%;
+    min-height: 60vh;
+    left: 5vh;
+    bottom: 2vh;
+    padding: 12vh 1vh;
+    padding-bottom: 0;
+    background-color: var(--background-primary-color);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+}
+
+.imgCont {
+    position: absolute;
+    width: 25vh;
+    height: 25vh;
+    top: -15vh;
+    padding: 1vh;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.authorImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.authorName {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+}
+
+.authorDesc {
+    width: 95%;
+    min-height: 15vh;
+    max-height: 30vh;
+    margin: 0;
+    margin-top: 1vh;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+/* width */
+.authorDesc::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.authorDesc::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+.authorDesc::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.authorDesc::-webkit-scrollbar-thumb:hover {
+    background: #808080;
+}
+
+.rightCont {
+    position: relative;
+    width: 70%;
+    min-height: 80vh;
+    left: 12%;
+    border-radius: 25px;
+    background-color: #fff;
+    padding: 5vh 5%;
+    z-index: 1;
+}
+
+.authorFullName {
+    position: absolute;
+    width: max-content;
+    height: auto;
+    top: -3rem;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--background-primary-color);
+    border-radius: 12px;
+}
+
+.authorFullDesc {
+    width: 100%;
+    height: auto;
+    color: var(--primary-font-color);
+}
+
+.myRecipes {
+    margin-top: 5vh;
+    font-size: 2rem;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--background-primary-color);
+    color: var(--primary-font-color);
+}
+
+.rightBottomCont {
+    width: 100%;
+    min-height: 40vh;
+    padding-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+}
